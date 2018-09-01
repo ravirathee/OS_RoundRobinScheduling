@@ -4,13 +4,21 @@
 int main() {
     printf("Hello, World!\n");
 
-    int n,i=0;
+    int n = 0, tq = 0, i=0;
+
+    printf("Enter the Time Quantum : ");
+    scanf("%d",&tq);
+
 
     printf("Enter the number of processes : ");
     scanf("%d",&n);
     printf("\nNumber of processes entered : %d\n",n);
 
-    int A[20]={0},B[20]={0},P[20]={0},temp[20]={0};
+    int A[20]={0}, at_i=0;       //Arrival Time
+    int B[20]={0}, bt_i=0;       //Burst   Time
+    int P[20]={0}, p_i=0;        //Priority
+    int R[20]={0};               //Remaining Time
+    int RQ[100]={0}, rq_i=-1 , rq_j=-1 ;   //rq is Request Queue
 
     //Input Arrival Time
     printf("\nEnter Arrival time of processes: \n");
@@ -28,6 +36,7 @@ int main() {
 
     for(i=0;i<n;i++){
         scanf("%d",&A[i]);
+        R[i]=B[i];
     }
 
     printf("\n");
@@ -48,6 +57,9 @@ int main() {
         printf("%d ",A[i]);
     }
     printf("\n");
+
+
+
 
 
 
