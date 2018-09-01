@@ -4,70 +4,69 @@
 int main() {
     printf("Hello, World!\n");
 
-    int n = 0, tq = 0, i=0;
+    int n = 0, tq = 0, i = 0;
 
     printf("Enter the Time Quantum : ");
-    scanf("%d",&tq);
+    scanf("%d", &tq);
 
 
     printf("Enter the number of processes : ");
-    scanf("%d",&n);
-    printf("\nNumber of processes entered : %d\n",n);
+    scanf("%d", &n);
+    printf("\nNumber of processes entered : %d\n", n);
 
-    int A[20]={0}, at_i=0;       //Arrival Time
-    int B[20]={0}, bt_i=0;       //Burst   Time
-    int P[20]={0}, p_i=0;        //Priority
-    int R[20]={0};               //Remaining Time
-    int RQ[100]={0}, rq_i=-1 , rq_j=-1 ;   //rq is Request Queue
+    int AT[20] = {0}, at_i = 0;       //Arrival Time
+    int BT[20] = {0}, bt_i = 0;       //Burst   Time
+    int P[20] = {0}, p_i = 0;        //Priority
+    int RT[20] = {0};               //Remaining Time
+    int CT[20] = {0};              //Completion Time
+    int TAT[20] = {0};             //Turn-Around Time
+    int WT[20] = {0};              //Waiting Time
+    int time = 0;                //current time
+    int count = 0;                 //current process
+    int remain = n;                //remain processes with rt>0
 
     //Input Arrival Time
     printf("\nEnter Arrival time of processes: \n");
-    for(i=0;i<n;i++){
-        scanf("%d",&A[i]);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &AT[i]);
     }
 
     printf("Arrival Time: ");
-    for(i=0;i<n;i++){
-        printf("%d ",A[i]);
+    for (i = 0; i < n; i++) {
+        printf("%d ", AT[i]);
     }
 
     //Input Burst Time
     printf("\n\nEnter Burst time of processes: \n");
 
-    for(i=0;i<n;i++){
-        scanf("%d",&A[i]);
-        R[i]=B[i];
+    for (i = 0; i < n; i++) {
+        scanf("%d", &BT[i]);
+        RT[i] = BT[i];
     }
 
     printf("\n");
     printf("Burst Time: ");
-    for(i=0;i<n;i++){
-        printf("%d ",A[i]);
+    for (i = 0; i < n; i++) {
+        printf("%d ", BT[i]);
     }
 
     //Input Priority
     printf("\n\nEnter Priority of processes: \n");
-    for(i=0;i<n;i++){
-        scanf("%d",&A[i]);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &P[i]);
     }
 
     printf("\n");
     printf("Priority : ");
-    for(i=0;i<n;i++){
-        printf("%d ",A[i]);
+    for (i = 0; i < n; i++) {
+        printf("%d ", P[i]);
     }
     printf("\n");
 
 
-
-
-
-
-
-
-
-
-
+    for (time = 0, count = 0; remain != 0;) {
+        if ( RT[count])
+    }
 
 
     return 0;
