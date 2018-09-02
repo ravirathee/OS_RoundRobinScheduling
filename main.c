@@ -2,8 +2,6 @@
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World!\n");
-
     int n = 0, tq = 0, i = 0;
 
     printf("Enter the Time Quantum : ");
@@ -14,16 +12,18 @@ int main() {
     scanf("%d", &n);
     printf("\nNumber of processes entered : %d\n", n);
 
-    int AT[20] = {0}, at_i = 0;       //Arrival Time
-    int BT[20] = {0}, bt_i = 0;       //Burst   Time
-    int P[20] = {0}, p_i = 0;         //Priority
-    int RT[20] = {0};                 //Remaining Time
-    int CT[20] = {0};                 //Completion Time
-    int TAT[20] = {0};                //Turn-Around Time
-    int WT[20] = {0};                 //Waiting Time
-    int time = 0;                     //current time
-    int count = 0;                    //current process
-    int remain = n;                   //remain processes with rt>0
+    int AT[20] = {0}, at_i = 0;             //Arrival Time
+    int BT[20] = {0}, bt_i = 0;             //Burst   Time
+    int P[20] = {0}, p_i = 0;               //Priority
+    int RT[20] = {0};                       //Remaining Time
+    int CT[20] = {0};                       //Completion Time
+    int TAT[20] = {0};                      //Turn-Around Time
+    int WT[20] = {0};                       //Waiting Time
+    int RQ[100] = {0},rq_i = -1, rq_j=-1;   //Ready Queue
+    int time = 0;                           //current time
+    int count = 0;                          //current process
+    int remain = n;                         //remain processes with rt>0
+
 
     //Input Arrival Time
     printf("\nEnter Arrival time of processes: \n");
@@ -65,8 +65,46 @@ int main() {
 
 
     for (time = 0, count = 0; remain != 0;) {
-        if ( RT[count])
+        if (RT[count] <= tq && RT[count] > 0) {
+            time += RT[count];
+            RT[count] = 0;
+        } else if (RT[count] > 0) {
+            time += tq;
+            RT[count] -= tq;
+        }
+
+        if (RT[count] == 0) {
+            remain--;
+            CT[count] = time;
+            TAT[count] = CT[count] - AT[count];
+            WT[count] = TAT[count] - BT[count];
+        }
+
+
+        if (count == n - 1)
+            count = 0;
+        else if (AT[count + 1] <= time)
+            count++;
+        else
+            count = 0;
     }
+
+    printf("\nCompletion Time: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", CT[i]);
+    }
+
+    printf("\nTurn Around Time: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", TAT[i]);
+    }
+
+    printf("\nWaiting Time: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", WT[i]);
+    }
+
+
 
 
     return 0;
