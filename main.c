@@ -40,7 +40,7 @@ int main() {
         printf("%d ", AT[i]);
     }
 
-    //Input Burst Time
+    // Input Burst Time
     printf("\n\nEnter Burst time of processes: \n");
 
     for (i = 0; i < n; i++) {
