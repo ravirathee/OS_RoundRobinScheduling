@@ -51,18 +51,23 @@ int main() {
         printf("%d ", BT[i]);
     }
 
-    //Input Priority
-    printf("\n\nEnter Priority of processes: \n");
-    for (i = 0; i < n; i++) {
-        scanf("%d", &P[i]);
-    }
+//    //Input Priority
+//    printf("\n\nEnter Priority of processes: \n");
+//    for (i = 0; i < n; i++) {
+//        scanf("%d", &P[i]);
+//    }
+//
+//    printf("\n");
+//    printf("Priority : ");
+//    for (i = 0; i < n; i++) {
+//        printf("%d ", P[i]);
+//    }
+//    printf("\n");
 
-    printf("\n");
-    printf("Priority : ");
-    for (i = 0; i < n; i++) {
-        printf("%d ", P[i]);
+    //Initializing Ready queue with -1
+    for (i = 0; i < 100; i++) {
+        RQ[i]=-1;
     }
-    printf("\n");
 
     //My Ready Queue has atleast one process
     //at the starting of process
@@ -70,7 +75,42 @@ int main() {
     rq_i = 0;
     rq_j = 0;
 
+
+    printf("\n\n\nRemaining Time: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", RT[i]);
+    }
+
+    printf("\nCompletion Time: ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", CT[i]);
+    }
+
+    printf("\nRequest Queue : ");
+    for (i = 0; i < 20; i++) {
+        printf("%d ", RQ[i]);
+    }
+
+    printf("\nCurrent  Time : %d",time);
+    printf("\nPrevious Time : %d",prev_time);
+    printf("\nrq_i : %d",rq_i);
+    printf("\nrq_j : %d",rq_j);
+
+
+
+
+
+
+
+
+
+
+
+
+
     for (time = 0, count = 0; remain != 0;) {
+
+        printf("\n\n\ncount : %d",count);
 
         prev_time = time;
 
@@ -91,23 +131,45 @@ int main() {
 
 
         for (i = 0; i < n; i++) {
-            if (AT[i] <= time && AT[i] > time - prev_time) {
+            if (AT[i] <= time && AT[i] > prev_time) {
                 rq_j += 1;
                 RQ[rq_j] = i;
             }
         }
+
         if (RT[count] != 0) {
             rq_j += 1;
-
+            RQ[rq_j] = count;
         }
 
 
-        if (count == n - 1)
-            count = 0;
-        else if (AT[count + 1] <= time)
-            count++;
-        else
-            count = 0;
+        if (rq_i <= rq_j) {
+            rq_i += 1;
+            count = RQ[rq_i];
+        }
+
+
+
+        printf("\nRemaining Time: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", RT[i]);
+        }
+
+        printf("\nCompletion Time: ");
+        for (i = 0; i < n; i++) {
+            printf("%d ", CT[i]);
+        }
+
+        printf("\nRequest Queue : ");
+        for (i = 0; i < 20; i++) {
+            printf("%d ", RQ[i]);
+        }
+
+        printf("\nCurrent  Time : %d",time);
+        printf("\nPrevious Time : %d",prev_time);
+        printf("\nrq_i : %d",rq_i);
+        printf("\nrq_j : %d",rq_j);
+        printf("\ncount : %d",count);
     }
 
     printf("\nCompletion Time: ");
