@@ -19,8 +19,9 @@ int main() {
     int CT[20] = {0};                       //Completion Time
     int TAT[20] = {0};                      //Turn-Around Time
     int WT[20] = {0};                       //Waiting Time
-    int RQ[100] = {0},rq_i = -1, rq_j=-1;   //Ready Queue
+    int RQ[100] = {-1}, rq_i = -1, rq_j = -1;  //Ready Queue
     int time = 0;                           //current time
+    int prev_time = 0;                      //time in prev iteration
     int count = 0;                          //current process
     int remain = n;                         //remain processes with rt>0
 
@@ -63,8 +64,16 @@ int main() {
     }
     printf("\n");
 
+    //My Ready Queue has atleast one process
+    //at the starting of process
+    RQ[0] = 0;
+    rq_i = 0;
+    rq_j = 0;
 
     for (time = 0, count = 0; remain != 0;) {
+
+        prev_time = time;
+
         if (RT[count] <= tq && RT[count] > 0) {
             time += RT[count];
             RT[count] = 0;
@@ -78,6 +87,18 @@ int main() {
             CT[count] = time;
             TAT[count] = CT[count] - AT[count];
             WT[count] = TAT[count] - BT[count];
+        }
+
+
+        for (i = 0; i < n; i++) {
+            if (AT[i] <= time && AT[i] > time - prev_time) {
+                rq_j += 1;
+                RQ[rq_j] = i;
+            }
+        }
+        if (RT[count] != 0) {
+            rq_j += 1;
+
         }
 
 
@@ -103,8 +124,6 @@ int main() {
     for (i = 0; i < n; i++) {
         printf("%d ", WT[i]);
     }
-
-
 
 
     return 0;
