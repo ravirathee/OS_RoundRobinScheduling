@@ -12,18 +12,18 @@ int main() {
     scanf("%d", &n);
     printf("\nNumber of processes entered : %d\n", n);
 
-    int AT[20] = {0}, at_i = 0;             //Arrival Time
-    int BT[20] = {0}, bt_i = 0;             //Burst   Time
-    int P[20] = {0}, p_i = 0;               //Priority
-    int RT[20] = {0};                       //Remaining Time
-    int CT[20] = {0};                       //Completion Time
-    int TAT[20] = {0};                      //Turn-Around Time
-    int WT[20] = {0};                       //Waiting Time
-    int RQ[100] = {-1}, rq_i = -1, rq_j = -1;  //Ready Queue
-    int time = 0;                           //current time
-    int prev_time = 0;                      //time in prev iteration
-    int count = 0;                          //current process
-    int remain = n;                         //remain processes with rt>0
+    int AT[20] = {0}, at_i = 0;                 //Arrival Time
+    int BT[20] = {0}, bt_i = 0;                 //Burst   Time
+    int P[20] = {0}, p_i = 0;                   //Priority
+    int RT[20] = {0};                           //Remaining Time
+    int CT[20] = {0};                           //Completion Time
+    int TAT[20] = {0};                          //Turn-Around Time
+    int WT[20] = {0};                           //Waiting Time
+    int RQ[100] = {-1}, rq_i = -1, rq_j = -1;   //Ready Queue
+    int time = 0;                               //current time
+    int prev_time = 0;                          //time in prev iteration
+    int count = 0;                              //current process
+    int remain = n;                             //remain processes with rt>0
 
 
     //Input Arrival Time
